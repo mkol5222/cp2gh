@@ -68,6 +68,16 @@
         label="Send policy.json to GitHub"
         @click="sendToGithub"
       ></q-btn>
+
+      <q-input
+        v-if="sendToGithubResult"
+        v-model="sendToGithubResult"
+        label="Send to GitHub Result"
+        type="textarea"
+        :rows="10"
+        :autofocus="true"
+        readonly
+      > </q-input>
     </q-page-container>
   </q-layout>
 </template>
@@ -79,6 +89,8 @@ import { ref, computed } from 'vue';
 
 const contextObj = ref({});
 const errorMessage = ref('');
+
+const sendToGithubResult = ref('');
 
 const accessPolicyObj = ref({});
 
@@ -125,8 +137,8 @@ const objectsDictionary = computed(() => {
 });
 
 const policyObj = computed(() => {
-  return rulebase.value && objectsDictionary.value
-    ? { rulebase: rulebase.value, objectsDictionary: objectsDictionary.value }
+  return contextObj.value && rulebase.value && objectsDictionary.value
+    ? { rulebase: rulebase.value, objectsDictionary: objectsDictionary.value, context: contextObj.value }
     : null;
 });
 
@@ -153,7 +165,9 @@ async function getPolicy() {
 async function sendToGithub() {
   console.log('sendToGithub: policyObj', policyObj.value);
   try {
-    await savePolicyToGithub(policyObj.value);
+    const result = await savePolicyToGithub(policyObj.value);
+    console.log('sendToGithub: result', result);
+    sendToGithubResult.value = JSON.stringify(result, null, 2);
   } catch (err) {
     errorMessage.value = err.message;
   }

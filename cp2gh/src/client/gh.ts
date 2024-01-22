@@ -9,13 +9,17 @@ async function savePolicyToGithub(policy) {
     "operationName": "savePolicyToGithub",
     "extensions": {}
   }
-  const response = await fetch("http://localhost:3003/graphql", {
+  const response = await fetch("/graphql", {
     "headers": {
       "content-type": "application/json",
+      "authorization": `Basic Z3VydToxMjM0NTY=`
     },
     "body": JSON.stringify(body),
     "method": "POST",
   });
+
+  const result = await response.json();
+  return result;
 }
 
 export { savePolicyToGithub }
