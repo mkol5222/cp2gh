@@ -80,7 +80,7 @@ async function showAccessRulebase(uid: string) {
             "details-level": "full",
             //"name": `${policyPackage} Network`,
             "uid": uid,
-            "show-as-ranges": false,
+            "show-as-ranges": true,
             "use-object-dictionary": true,
           }
         },
