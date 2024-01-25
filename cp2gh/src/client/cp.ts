@@ -1,6 +1,11 @@
-import { resolve } from "dns";
+import { mockupData } from "./cputils";
 
 async function getSmartConsoleContext() {
+  // console.log('getSmartConsoleContext called', smxProxy);
+  if (typeof smxProxy == 'undefined') return new Promise((resolve, _) => {
+    resolve(mockupData.context);
+  });
+
   return new Promise((resolve, reject) => {
 
     try {
@@ -63,6 +68,17 @@ async function getSmartConsoleContext() {
 // }
 
 async function showAccessRulebase(uid: string) {
+
+  if (typeof smxProxy == 'undefined') return new Promise((resolve, _) => {
+    resolve({
+      "response": {
+        "uid": "3895dce9-15f0-45ac-bde9-a07a6bc4a8f1",
+        "name": "K8S Network",
+        rulebase: mockupData.rulebase,
+        "objects-dictionary": mockupData.objectsDictionary,
+      }
+    });
+  });
 
   return new Promise((resolve, reject) => {
 
