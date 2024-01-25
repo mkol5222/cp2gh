@@ -86,6 +86,7 @@
 import { getSmartConsoleContext, showAccessRulebase } from '../client/cp.ts';
 import { savePolicyToGithub } from '../client/gh.ts';
 import { ref, computed } from 'vue';
+import { flattenRulebase } from '../client/cputils.ts';
 
 const contextObj = ref({});
 const errorMessage = ref('');
@@ -138,7 +139,12 @@ const objectsDictionary = computed(() => {
 
 const policyObj = computed(() => {
   return contextObj.value && rulebase.value && objectsDictionary.value
-    ? { rulebase: rulebase.value, objectsDictionary: objectsDictionary.value, context: contextObj.value }
+    ? {
+      rulebase: rulebase.value,
+      objectsDictionary: objectsDictionary.value,
+      context: contextObj.value,
+      flatRulebase: flattenRulebase(rulebase.value)
+     }
     : null;
 });
 
