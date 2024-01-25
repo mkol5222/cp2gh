@@ -60,7 +60,7 @@ function processRulebase(rulebase, objectsDictionary) {
 
   let simpleRules = rules.map((rule) => {
     const sourceNS = rule['source-ranges']?.others?.map((uid) => namespacesByUid[uid]?.name).filter(item => (typeof item == 'string'));
-    const destIP = rule['destination-ranges']?.ipv4.map((ip) => new IpRange(new IpAddress.of(ip.start), new IpAddress.of(ip.end)).toCidrs().map(cidr => cidr.toString())).flat();
+    const destIP = rule['destination-ranges']?.ipv4.map((ip) => new IpRange(new IpAddress.of(ip.start), new IpAddress.of(ip.end)).toCidrs().map(cidr => cidr.toString()))?.flat();
 
     const tcpServices = rule['service-ranges']?.tcp?.map((port) => port.start === port.end ? `tcp/${port.start}` : `tcp/${port.start}-${port.end}`);
     const udpServices = rule['service-ranges']?.udp?.map((port) => port.start === port.end ? `udp/${port.start}` : `udp/${port.start}-${port.end}`);
