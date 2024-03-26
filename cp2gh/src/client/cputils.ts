@@ -1,5 +1,5 @@
 
-import mockupData from "../../data/aks-policy.json";
+import mockupData from '../../data/aks-policy.json';
 import { Cidr, IpAddress, IpRange } from 'cidr-calc';
 
 // console.log('mockupData', mockupData);
@@ -11,7 +11,7 @@ import { Cidr, IpAddress, IpRange } from 'cidr-calc';
 function flattenRulebase(rulebase) {
   let rules = [];
   for (const item of rulebase) {
-    if (item.type === "access-section") {
+    if (item.type === 'access-section') {
       // add nested rulebase
       rules = rules.concat(item.rulebase);
     } else {
@@ -31,15 +31,17 @@ function objectsById(arrayOfObjects) {
 }
 
 Object.defineProperty(Array.prototype, 'flat', {
-  value: function(depth = 1) {
+  value: function (depth = 1) {
     return this.reduce(function (flat, toFlatten) {
-      return flat.concat((Array.isArray(toFlatten) && (depth>1)) ? toFlatten.flat(depth-1) : toFlatten);
+      return flat.concat((Array.isArray(toFlatten) && (depth > 1)) ? toFlatten.flat(depth - 1) : toFlatten);
     }, []);
   }
 });
 
 function processRulebase(rulebase, objectsDictionary) {
-
+  console.log('processRulebase');
+  console.log('rulebase', JSON.stringify(rulebase, null, 2));
+  console.log('objectsDictionary', JSON.stringify(objectsDictionary, null, 2));
 
   const namespacesByUid = objectsById(objectsDictionary.filter((obj) => (obj.type === 'group' && obj.name.startsWith('ns_'))));
 

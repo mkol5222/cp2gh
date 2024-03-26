@@ -8,7 +8,7 @@ const routes: RouteRecordRaw[] = [
   // },
   {
     path: '/',
-    component: () => import('../scext/MainPage.vue')
+    component: () => import('../scext/PolicyPage.vue') // import('../scext/APage.vue') // import('../scext/PolicyPage.vue') // import('pages/IndexPage.vue'), //import('../scext/PolicyPage.vue') //import('../scext/MainPage.vue')
   },
   {
     path: '/policy',

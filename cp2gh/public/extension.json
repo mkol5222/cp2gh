@@ -1,32 +1,44 @@
 {
-	"extension": {
-		"name": "CP2GH",
-		"product-url": "https://github.com/mkol5222/cp2gh",
-		"provider": "extensions@checkpoint.com",
-		"version": "1.0"
-	},
-	"custom-data": {
-		"display-level": "developer",
-		"theme": "light"
-	},
-	"locations": [
-	{
-		"location": "details-pane",
-		"relevant-types": ["access-policy"],
-		"ui-element": {
-			"type": "tab",
-			"caption": "CP2GH",
-			"tooltip": "way to install CP policy to TF targets",
-			"action": {
-				"details-level": "full",
-				"method": "get",
-				"trigger-id": "details-pane",
-				"url": "index.html#/policy"
-			}
-		}
-	}],
-	"requested-permissions": {
-		"client": ["get-read-only-session",  "run-read-only-commands"],
-		"resource-urls": ["https://localhost:3003/","https://cdn.intake-lr.com", "https://r.intake-lr.com", "https://ajax.googleapis.com"]
-	}
+  "extension": {
+    "name": "CP2GH",
+    "product-url": "https://github.com/mkol5222/cp2gh",
+    "provider": "extensions@checkpoint.com",
+    "version": "1.0"
+  },
+  "custom-data": {
+    "display-level": "developer",
+    "theme": "light"
+  },
+  "locations": [
+    {
+      "location": "details-pane",
+      "relevant-types": [
+        "access-policy"
+      ],
+      "ui-element": {
+        "type": "tab",
+        "caption": "CP2GH",
+        "tooltip": "way to install CP policy to TF targets",
+        "action": {
+          "details-level": "full",
+          "method": "get",
+          "trigger-id": "details-pane",
+          "url": "index.html"
+        }
+      }
+    }
+  ],
+  "requested-permissions": {
+    "client": [
+      "get-read-only-session",
+      "run-read-only-commands"
+    ],
+    "resource-urls": [
+      "https://localhost:9000/",
+      "https://localhost:3003/",
+      "https://cdn.intake-lr.com",
+      "https://r.intake-lr.com",
+      "https://ajax.googleapis.com"
+    ]
+  }
 }

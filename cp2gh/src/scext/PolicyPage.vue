@@ -37,7 +37,8 @@
                     {{ oneSource }}
                   </q-chip>
                 </td>
-                <td>                  <q-chip
+                <td>
+                  <q-chip
                     v-for="oneDestination in rule.destination"
                     :key="oneDestination"
                     outline
@@ -46,8 +47,10 @@
                     icon="lan"
                   >
                     {{ oneDestination }}
-                  </q-chip></td>
-                <td><q-chip
+                  </q-chip>
+                </td>
+                <td>
+                  <q-chip
                     v-for="svc in rule.services"
                     :key="svc"
                     outline
@@ -56,8 +59,10 @@
                     icon="notes"
                   >
                     {{ svc }}
-                  </q-chip></td>
-                <td><q-chip
+                  </q-chip>
+                </td>
+                <td>
+                  <q-chip
                     v-for="installTarget in rule.installOn"
                     :key="installTarget"
                     outline
@@ -66,12 +71,14 @@
                     icon="computer"
                   >
                     {{ installTarget }}
-                  </q-chip></td>
+                  </q-chip>
+                </td>
               </tr>
             </tbody>
           </q-markup-table>
         </div>
       </div>
+
       <q-banner
         inline-actions
         class="text-white bg-red"
@@ -159,11 +166,11 @@ import { savePolicyToGithub } from '../client/gh.ts';
 import { ref, computed } from 'vue';
 import {
   flattenRulebase,
-  mockupData,
+  //mockupData,
   processRulebase,
 } from '../client/cputils.ts';
 
-console.log('PolicyPage: mockupData 123', mockupData);
+// console.log('AAA PolicyPage: mockupData 123', mockupData);
 
 const contextObj = ref({});
 const errorMessage = ref('');
@@ -210,7 +217,7 @@ const rulebase = computed(() => {
 
 const objectsDictionary = computed(() => {
   return accessPolicyObj.value?.response
-    ? accessPolicyObj.value.response['objects-dictionary']
+    ? accessPolicyObj.value?.response['objects-dictionary']
     : [];
 });
 
@@ -242,7 +249,7 @@ async function getContext() {
   try {
     contextObj.value = await getSmartConsoleContext();
   } catch (e) {
-    errorMessage.value = e.message;
+    errorMessage.value = e?.message;
   }
 }
 
@@ -252,7 +259,7 @@ async function getPolicy() {
       policyAccessLayerUid.value
     );
   } catch (err) {
-    errorMessage.value = err.message;
+    errorMessage.value = err?.message;
   }
 }
 
@@ -263,7 +270,7 @@ async function sendToGithub() {
     console.log('sendToGithub: result', result);
     sendToGithubResult.value = JSON.stringify(result, null, 2);
   } catch (err) {
-    errorMessage.value = err.message;
+    errorMessage.value = err?.message;
   }
 }
 </script>
